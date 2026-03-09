@@ -1,6 +1,0 @@
-﻿Stage 'download_data' didn't change, skipping
-Stage 'prepare_data' didn't change, skipping
-Stage 'train_model' didn't change, skipping
-Stage 'evaluate' didn't change, skipping
-Stage 'register_bentoml' didn't change, skipping
-Data and pipelines are up to date.

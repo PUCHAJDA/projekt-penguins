@@ -1,2 +1,0 @@
-﻿Path          accuracy    f1_score
-metrics.json  1.0         1.0
