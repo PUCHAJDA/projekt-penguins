@@ -179,4 +179,5 @@ W BentoML store zarejestrowane są dwa modele: `penguins_classifier` (RandomFore
 Serwis BentoML uruchomiony na porcie 3000 odpowiada na `POST /predict`. Wejście to 6 cech pingwina (4 numeryczne + `island` + `sex`), wyjście to `{"species": "Adelie" | "Chinstrap" | "Gentoo"}`. Preprocessing w serwisie jest identyczny jak w pipeline (ten sam `penguins_encoder` z BentoML store).
 
 <br>
+Dziękuję.
 <br>
