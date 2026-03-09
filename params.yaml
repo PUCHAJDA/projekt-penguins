@@ -4,6 +4,6 @@ data:
   random_state: 42
 
 train:
-  n_trials: 20
+  n_trials: 25
   cv_folds: 5
   experiment_name: "penguins-optuna"
