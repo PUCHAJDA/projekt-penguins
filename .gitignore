@@ -1,0 +1,18 @@
+# dane i modele — sledzone przez DVC, nie git
+/data/
+!/data/.gitkeep
+/models/
+!/models/.gitkeep
+
+# MLflow
+/mlruns/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# screenshoty — do githuba (jesli chcesz)
+# /screens/

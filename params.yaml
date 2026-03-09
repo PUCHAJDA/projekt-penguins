@@ -1,0 +1,9 @@
+data:
+  openml_id: 42585
+  test_size: 0.2
+  random_state: 42
+
+train:
+  n_trials: 20
+  cv_folds: 5
+  experiment_name: "penguins-optuna"

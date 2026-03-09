@@ -1,0 +1,105 @@
+schema: '2.0'
+stages:
+  download_data:
+    cmd: python src/download_data.py
+    deps:
+    - path: src/download_data.py
+      hash: md5
+      md5: 73d8bbd217dfd743676bbc0cbf6d143f
+      size: 791
+    params:
+      params.yaml:
+        data.openml_id: 42585
+    outs:
+    - path: data/penguins.csv
+      hash: md5
+      md5: 011a4b12c613a766747a35d799bfe18f
+      size: 15360
+  prepare_data:
+    cmd: python src/prepare_data.py
+    deps:
+    - path: data/penguins.csv
+      hash: md5
+      md5: 011a4b12c613a766747a35d799bfe18f
+      size: 15360
+    - path: src/prepare_data.py
+      hash: md5
+      md5: 7a9b568a959d1d49d3e4b6b559ebaf51
+      size: 2178
+    params:
+      params.yaml:
+        data.random_state: 42
+        data.test_size: 0.2
+    outs:
+    - path: data/test.csv
+      hash: md5
+      md5: 53007ba7d0b4764bd356364e92805893
+      size: 3869
+    - path: data/train.csv
+      hash: md5
+      md5: c48b5e73d183143c71628030e27327a0
+      size: 14989
+    - path: models/encoder.pkl
+      hash: md5
+      md5: 6676da56f581b9f7dd02ac7431b641c7
+      size: 671
+  train_model:
+    cmd: python src/train_model.py
+    deps:
+    - path: data/train.csv
+      hash: md5
+      md5: c48b5e73d183143c71628030e27327a0
+      size: 14989
+    - path: src/train_model.py
+      hash: md5
+      md5: fde8b7b79676455ce5ef82f2fca77cdd
+      size: 2877
+    params:
+      params.yaml:
+        train.cv_folds: 5
+        train.experiment_name: penguins-optuna
+        train.n_trials: 20
+    outs:
+    - path: models/model.pkl
+      hash: md5
+      md5: 4896c456f7de5a542602726d9bc52b22
+      size: 512311
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - path: data/test.csv
+      hash: md5
+      md5: 53007ba7d0b4764bd356364e92805893
+      size: 3869
+    - path: models/encoder.pkl
+      hash: md5
+      md5: 6676da56f581b9f7dd02ac7431b641c7
+      size: 671
+    - path: models/model.pkl
+      hash: md5
+      md5: 4896c456f7de5a542602726d9bc52b22
+      size: 512311
+    - path: src/evaluate.py
+      hash: md5
+      md5: a8546858504fad4b447e573cc1e93723
+      size: 1832
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: a78b2a165936130d943bddaee02c1fd3
+      size: 43
+  register_bentoml:
+    cmd: python src/register_bentoml.py
+    deps:
+    - path: models/encoder.pkl
+      hash: md5
+      md5: 6676da56f581b9f7dd02ac7431b641c7
+      size: 671
+    - path: models/model.pkl
+      hash: md5
+      md5: 4896c456f7de5a542602726d9bc52b22
+      size: 512311
+    - path: src/register_bentoml.py
+      hash: md5
+      md5: ba67c3da07978ceaa831caf80cf1cbd4
+      size: 1516

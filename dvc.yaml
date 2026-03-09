@@ -1,0 +1,52 @@
+stages:
+  download_data:
+    cmd: python src/download_data.py
+    deps:
+    - src/download_data.py
+    params:
+    - data.openml_id
+    outs:
+    - data/penguins.csv
+
+  prepare_data:
+    cmd: python src/prepare_data.py
+    deps:
+    - src/prepare_data.py
+    - data/penguins.csv
+    params:
+    - data.test_size
+    - data.random_state
+    outs:
+    - data/train.csv
+    - data/test.csv
+    - models/encoder.pkl
+
+  train_model:
+    cmd: python src/train_model.py
+    deps:
+    - src/train_model.py
+    - data/train.csv
+    params:
+    - train.n_trials
+    - train.cv_folds
+    - train.experiment_name
+    outs:
+    - models/model.pkl
+
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - src/evaluate.py
+    - data/test.csv
+    - models/model.pkl
+    - models/encoder.pkl
+    metrics:
+    - metrics.json:
+        cache: false
+
+  register_bentoml:
+    cmd: python src/register_bentoml.py
+    deps:
+    - src/register_bentoml.py
+    - models/model.pkl
+    - models/encoder.pkl
