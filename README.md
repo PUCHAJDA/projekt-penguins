@@ -1,7 +1,7 @@
 # Palmer Penguins — End-to-End ML Pipeline
 
 Projekt końcowy warsztatów SGGW — Implementacja Systemów AI.
-Numer studenta  # k035102@sggw.edu.pl
+<br>Numer studenta  # k035102@sggw.edu.pl
 
 Klasyfikacja 3 gatunków pingwinów (Adelie, Chinstrap, Gentoo) na zbiorze **Palmer Penguins** (OpenML id: 42585) za pomocą kompletnego pipeline'u: DVC → Optuna → MLflow → BentoML.
 
@@ -87,20 +87,20 @@ train:
 ## Uruchomienie
 
 ```bash
-# 1. Zainstaluj zależności
+# 1. zależności
 pip install -r requirements.txt
 
-# 2. Uruchom cały pipeline
+# cały pipeline
 dvc repro
 
-# 3. Sprawdź metryki
+# sprawdzenie metryk
 dvc metrics show
 
-# 4. Uruchom serwis predykcji
+# 4. uruchom serwis predykcji
 bentoml serve service:PenguinsService --port 3000
 ```
 
-### Przykładowe zapytanie do API
+### Przykładowe zapytanie API
 ```bash
 curl -X POST http://localhost:3000/predict \
   -H "Content-Type: application/json" \
@@ -114,11 +114,11 @@ curl -X POST http://localhost:3000/predict \
 
 ## Screenshoty
 
-### Screenshot 1 — Graf pipeline'u (`dvc dag`)
+### Screenshot 1 — graf pipeline'u (`dvc dag`)
 
 ![dvc dag](screens/scr_01_dvc_dag.png)
 
-Graf DAG pokazuje 5 etapów pipeline'u i ich zależności. Etapy wykonywane są sekwencyjnie: `download_data` → `prepare_data` → `train_model` → `evaluate` → `register_bentoml`. DVC automatycznie wykrywa zmiany i pomija etapy, których wejścia nie uległy zmianie (cache).
+Graf DAG pokazuje 5 etapów pipeline'u i ich zależności. Etapy wykonywane są sekwencyjnie: `download_data` → `prepare_data` → `train_model` → `evaluate` → `register_bentoml`. *DVC wykrywa zmiany i pomija etapy, których wejścia nie uległy zmianie (cache).
 
 ---
 
@@ -128,7 +128,7 @@ Graf DAG pokazuje 5 etapów pipeline'u i ich zależności. Etapy wykonywane są 
 
 ![dvc repro 2/2](screens/scr_02_dvc_repro_2of2.png)
 
-`dvc repro` uruchamia kolejno wszystkie 5 etapów pipeline'u. Widoczne są logi poszczególnych skryptów: pobieranie danych z OpenML, preprocessing (344→334 rekordów po `dropna()`), trenowanie z Optuna (20 prób), ewaluacja i rejestracja w BentoML store.
+`dvc repro` uruchamia kolejno wszystkie 5 etapów pipeline'u. Widoczne są logi poszczególnych etapów: pobieranie danych z OpenML, preprocessing (344→334 rekordów po `dropna()`), trenowanie z Optuna (20 prób), ewaluacja i rejestracja w BentoML store.
 
 ---
 
@@ -177,3 +177,6 @@ W BentoML store zarejestrowane są dwa modele: `penguins_classifier` (RandomFore
 ![swagger predict](screens/scr_08_swagger-predict.png)
 
 Serwis BentoML uruchomiony na porcie 3000 odpowiada na `POST /predict`. Wejście to 6 cech pingwina (4 numeryczne + `island` + `sex`), wyjście to `{"species": "Adelie" | "Chinstrap" | "Gentoo"}`. Preprocessing w serwisie jest identyczny jak w pipeline (ten sam `penguins_encoder` z BentoML store).
+
+<br>
+<br>
