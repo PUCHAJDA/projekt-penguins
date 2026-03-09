@@ -58,12 +58,12 @@ stages:
       params.yaml:
         train.cv_folds: 5
         train.experiment_name: penguins-optuna
-        train.n_trials: 25
+        train.n_trials: 20
     outs:
     - path: models/model.pkl
       hash: md5
-      md5: fa4c2ea174dfad9e9751c42e348551f3
-      size: 106985
+      md5: 4896c456f7de5a542602726d9bc52b22
+      size: 512311
   evaluate:
     cmd: python src/evaluate.py
     deps:
@@ -77,8 +77,8 @@ stages:
       size: 671
     - path: models/model.pkl
       hash: md5
-      md5: fa4c2ea174dfad9e9751c42e348551f3
-      size: 106985
+      md5: 4896c456f7de5a542602726d9bc52b22
+      size: 512311
     - path: src/evaluate.py
       hash: md5
       md5: a8546858504fad4b447e573cc1e93723
@@ -97,8 +97,8 @@ stages:
       size: 671
     - path: models/model.pkl
       hash: md5
-      md5: fa4c2ea174dfad9e9751c42e348551f3
-      size: 106985
+      md5: 4896c456f7de5a542602726d9bc52b22
+      size: 512311
     - path: src/register_bentoml.py
       hash: md5
       md5: ba67c3da07978ceaa831caf80cf1cbd4
