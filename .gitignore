@@ -1,8 +1,6 @@
 # dane i modele — sledzone przez DVC, nie git
 /data/
 !/data/.gitkeep
-/models/
-!/models/.gitkeep
 
 # MLflow
 /mlruns/
