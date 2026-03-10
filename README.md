@@ -41,7 +41,7 @@ Klasyfikacja 3 gatunków pingwinów (Adelie, Chinstrap, Gentoo) na zbiorze **Pal
 - Wejście: 6 cech (4 numeryczne + island + sex)
 - Wyjście: `{"species": "Adelie" | "Chinstrap" | "Gentoo"}`
 
-### Uwaga - celowo odignorowany /models w celu potwierdzenia spełnienia "najlepszy model zapisany w /models"
+### Uwaga - celowo odignorowany "models" w celu potwierdzenia spełnienia "najlepszy model zapisany w models"
 
 ---
 
